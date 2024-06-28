@@ -5,6 +5,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class redio_CheckBox_example {
 
     WebDriver driver;
@@ -25,7 +27,7 @@ public class redio_CheckBox_example {
         boolean chromeOption = driver.findElement(By.id("j_idt87:console2:0")).isSelected();
         boolean firefoxOption = driver.findElement(By.id("j_idt87:console2:1")).isSelected();
         boolean safariOption = driver.findElement(By.id("j_idt87:console2:2")).isSelected();
-        boolean edgeOption = driver.findElement(By.id("j_idt87:console2k:3")).isSelected();
+        boolean edgeOption = driver.findElement(By.id("j_idt87:console2:3")).isSelected();
 
         if (chromeOption) {
             String chromeText = driver.findElement(By.xpath("//label[@for='j_idt87:console2:0']")).getText();
@@ -40,10 +42,7 @@ public class redio_CheckBox_example {
             String edgeText = driver.findElement(By.xpath("//label[@for='j_idt87:console2:3']")).getText();
             System.out.println("default select radio button is " + edgeText);
         }
-    }
 
-    @Test
-    public void checkBox(){
         //02. select the age group only if not selected
         WebElement myAge = driver.findElement(By.id("j_idt87:age:0"));
         boolean isCheck = myAge.isSelected();
@@ -51,10 +50,20 @@ public class redio_CheckBox_example {
             driver.findElement(By.xpath("//label[@for='j_idt87:age:0']")).click();
         }
     }
+
+    @Test
+    public void checkBox(){
+        //1.select wanted checkbox and verifying those checkboxes selected status
+        driver.get("https://www.leafground.com/checkbox.xhtml");
+
+        List<WebElement> checkBoxList =  driver.findElements(By.xpath("//table[@id='j_idt87:basic']//label"));
+        for(WebElement element:checkBoxList){
+            if(!(element.getText().equals("Others"))){
+                element.click();
+            }
+        }
+        for(int i=1 ; i<=checkBoxList.size();i++){
+            driver.findElement(By.xpath("(//table[@id='j_idt87:basic']//input)[]"));
+        }
+    }
 }
-
-
-
-
-
-
