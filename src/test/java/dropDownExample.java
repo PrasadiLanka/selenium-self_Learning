@@ -16,7 +16,6 @@ public class dropDownExample {
     public void dropdwonPage(){
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://www.leafground.com/select.xhtml");
     }
 
     @Test
@@ -26,6 +25,7 @@ public class dropDownExample {
         /*this is basic dropdwon.thats why this start with select tag.to handle this selenium provides special
 		class call "Select". becuase can use methods that include in the Select
 		class. 	*/
+        driver.get("https://www.leafground.com/select.xhtml");
         WebElement dropdown = driver.findElement(By.xpath("//select[@class='ui-selectonemenu']"));
         Select select = new Select(dropdown);
         select.selectByIndex(1);
@@ -47,7 +47,32 @@ public class dropDownExample {
         dropdown.sendKeys("Puppeteer"); // used 1.1 declared dropdown variable
 
         //1.4 selecting value in boostrap dropdown.boostrap dropdowns not started with select tag
+        WebElement dropdown2 = driver.findElement(By.xpath("//div[@id='j_idt87:country']"));
+        dropdown2.click();
+        List<WebElement> dropdown2List = driver.findElements(By.xpath("//ul[@id='j_idt87:country_items']/li"));
+        for(WebElement element : dropdown2List){
+            String dropdownValue = element.getText();
+            if(dropdownValue.equals("Germany")){
+                element.click();
+                //break;
+            }
+        }
+    }
 
+    @Test
+    //02.google search-pick a value from suggestion
+    public void googleSearchDropdown() throws InterruptedException {
+        driver.get("https://www.google.com/");
+        driver.findElement(By.name("q")).sendKeys("harry potter");
+        Thread.sleep(2000);
+        List<WebElement> dropdown3List =driver.findElements(By.xpath("//ul[@role='listbox']/li//div[@class='eIPGRd']"));
+        for(WebElement element1 : dropdown3List){
+            String dropdownValue = element1.getText();
+            if(dropdownValue.equals("Harry Potter and the Philosopher's Stone")){
+                element1.click();
+                //break;
+            }
+        }
     }
 }
 
