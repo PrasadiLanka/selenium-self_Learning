@@ -50,22 +50,6 @@ public class paralellTest {
                 driver.findElement(By.xpath("//label[@for='j_idt87:age:0']")).click();
             }
         }
-
-        @Test
-        public void checkBox(){
-            //1.select wanted checkbox and verifying those checkboxes selected status
-            driver.get("https://www.leafground.com/checkbox.xhtml");
-
-            List<WebElement> checkBoxList =  driver.findElements(By.xpath("//table[@id='j_idt87:basic']//label"));
-            for(WebElement element:checkBoxList){
-                if(!(element.getText().equals("Others"))){
-                    element.click();
-                }
-            }
-            for(int i=1 ; i<=checkBoxList.size();i++){
-                driver.findElement(By.xpath("(//table[@id='j_idt87:basic']//input)[]"));
-            }
         }
-    }
 
 
