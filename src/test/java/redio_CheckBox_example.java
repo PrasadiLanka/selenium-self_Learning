@@ -62,8 +62,9 @@ public class redio_CheckBox_example {
                 element.click();
             }
         }
-        for(int i=1 ; i<=checkBoxList.size();i++){
-            driver.findElement(By.xpath("(//table[@id='j_idt87:basic']//input)[]"));
+        for(int i=1 ; i<=checkBoxList.size();i ++){
+           boolean checkBoxStatus =  driver.findElement(By.xpath("(//table[@id='j_idt87:basic']//input)[" + i+ "]")).isSelected();
+            System.out.println("CheckBox" + i + "selected status is : " + checkBoxStatus);
         }
     }
 }
