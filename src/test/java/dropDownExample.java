@@ -65,14 +65,18 @@ public class dropDownExample {
         driver.get("https://www.google.com/");
         driver.findElement(By.name("q")).sendKeys("harry potter");
         Thread.sleep(2000);
-        List<WebElement> dropdown3List =driver.findElements(By.xpath("//ul[@role='listbox']/li//div[@class='eIPGRd']"));
-        for(WebElement element1 : dropdown3List){
-            String dropdownValue = element1.getText();
-            if(dropdownValue.equals("Harry Potter and the Philosopher's Stone")){
-                element1.click();
-                //break;
+        List<WebElement> googleDropdown3List = driver.findElements(By.xpath("//ul[@role='listbox']/li//div[@class='wM6W7d']"));
+        System.out.println(googleDropdown3List.size());
+        for(WebElement element5 : googleDropdown3List){
+            String googleDropdownValue = element5.getText();
+            if(googleDropdownValue.equals("Harry Potter and the Philosopher's Stone")){
+                element5.click();
+                break;
             }
         }
+
+        //03.handle dom auto suggestions dropdown and search using DOM debugger trick
+        //turn on the debugger mode using selector hub.then user can catch the drop down.
     }
 }
 
